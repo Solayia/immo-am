@@ -60,23 +60,67 @@
     .property-card-specs .spec { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--gray-600); }
     .property-card-specs .spec svg { width: 16px; height: 16px; color: var(--green); }
 
-    /* Detail modal */
+    /* Modal overlay */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); border-radius: var(--radius-lg); max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-    .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: rgba(0,0,0,0.5); border: none; border-radius: 50%; color: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.3s; }
+
+    /* Modal */
+    .modal { background: var(--white); border-radius: var(--radius-lg); max-width: 880px; width: 100%; max-height: 92vh; overflow-y: auto; position: relative; }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: rgba(0,0,0,0.5); border: none; border-radius: 50%; color: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.3s; font-size: 1.2rem; font-weight: bold; }
     .modal-close:hover { background: rgba(0,0,0,0.8); }
-    .modal-img { width: 100%; height: 350px; object-fit: cover; }
-    .modal-body { padding: 32px; }
-    .modal-body h2 { font-size: 1.5rem; margin-bottom: 4px; }
-    .modal-body .modal-location { color: var(--gray-500); font-size: 0.95rem; margin-bottom: 16px; }
-    .modal-price { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--green); margin-bottom: 20px; }
-    .modal-specs { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; padding: 16px; background: var(--cream); border-radius: var(--radius); }
-    .modal-specs .spec { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-    .modal-specs .spec svg { width: 20px; height: 20px; color: var(--green); }
+
+    /* Gallery */
+    .modal-gallery { position: relative; background: #111; }
+    .gallery-main { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .gallery-thumbs { display: flex; gap: 4px; padding: 6px; background: #111; overflow-x: auto; }
+    .gallery-thumbs img { width: 72px; height: 52px; object-fit: cover; border-radius: 6px; cursor: pointer; opacity: 0.5; transition: opacity 0.2s; border: 2px solid transparent; flex-shrink: 0; }
+    .gallery-thumbs img.active, .gallery-thumbs img:hover { opacity: 1; border-color: var(--green); }
+    .gallery-nav { position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 12px; transform: translateY(calc(-50% - 20px)); pointer-events: none; }
+    .gallery-nav button { pointer-events: all; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: var(--white); font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+    .gallery-nav button:hover { background: rgba(0,0,0,0.8); }
+    .gallery-counter { position: absolute; bottom: 70px; right: 12px; background: rgba(0,0,0,0.6); color: var(--white); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+
+    /* Modal body */
+    .modal-body { padding: 28px 32px 32px; }
+    .modal-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    .modal-header-row h2 { font-size: 1.4rem; margin-bottom: 4px; }
+    .modal-location { color: var(--gray-500); font-size: 0.9rem; }
+    .modal-price { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: var(--green); white-space: nowrap; }
+
+    /* Specs bar */
+    .modal-specs { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 18px; background: var(--cream); border-radius: var(--radius); }
+    .modal-specs .spec { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+    .modal-specs .spec svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
     .modal-specs .spec strong { color: var(--primary); }
-    .modal-desc { color: var(--gray-600); line-height: 1.8; margin-bottom: 24px; }
-    .modal-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* DPE badge */
+    .dpe-badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: var(--white); margin-left: 4px; }
+    .dpe-a { background: #319834; } .dpe-b { background: #33a357; }
+    .dpe-c { background: #cdd532; color: #333; } .dpe-d { background: #f0ec25; color: #333; }
+    .dpe-e { background: #f4b740; color: #333; } .dpe-f { background: #eb8235; }
+    .dpe-g { background: #d7221f; }
+
+    /* Tabs */
+    .modal-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--gray-200); margin-bottom: 20px; }
+    .modal-tabs .tab { padding: 10px 20px; background: none; border: none; font-size: 0.9rem; font-weight: 600; color: var(--gray-500); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.3s; font-family: var(--font-body); }
+    .modal-tabs .tab.active { color: var(--green); border-bottom-color: var(--green); }
+    .modal-tabs .tab:hover { color: var(--green-dark); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-content p { color: var(--gray-600); line-height: 1.8; margin-bottom: 16px; }
+
+    /* Features grid */
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+    .feature-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--cream); border-radius: 8px; font-size: 0.88rem; color: var(--gray-700); }
+    .feature-item svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+
+    /* Proximities */
+    .proximities-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .proximity-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--cream); border-radius: 50px; font-size: 0.85rem; color: var(--gray-600); }
+    .proximity-tag svg { width: 14px; height: 14px; color: var(--green); }
+
+    /* CTA */
+    .modal-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--gray-200); }
     .modal-cta a { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
     .modal-cta .btn-green { background: var(--green); color: var(--white); }
     .modal-cta .btn-green:hover { background: var(--green-light); }
@@ -99,8 +143,11 @@
     }
     @media (max-width: 600px) {
       .properties-grid { grid-template-columns: 1fr; }
-      .modal-img { height: 220px; }
+      .gallery-main { height: 240px; }
       .modal-body { padding: 20px; }
+      .modal-header-row { flex-direction: column; }
+      .modal-price { font-size: 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
       .modal-cta { flex-direction: column; }
       .modal-cta a { justify-content: center; }
     }
@@ -134,7 +181,19 @@
   <div class="container">
     <div class="properties-grid">
 
-      <div class="property-card" onclick="openModal(this)" data-title="Appartement T3 — Port Saint Sauveur" data-city="Toulouse" data-price="273 000 €" data-surface="60.5 m²" data-rooms="3 pièces" data-bedrooms="1 chambre" data-bathrooms="1 salle de bains" data-img="https://media.apimo.pro/cache/42121821f2a578ce210249a460740eae_124334a226_1920-original.jpg" data-desc="Bel appartement T3 situé dans le quartier prisé de Port Saint Sauveur, à deux pas du centre-ville de Toulouse. Lumineux et bien agencé, il offre un cadre de vie idéal avec ses commerces et transports à proximité.">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Appartement T3 — Port Saint Sauveur"
+        data-city="Toulouse"
+        data-price="273 000 €"
+        data-surface="60.5 m²"
+        data-rooms="3 pièces"
+        data-bedrooms="1 chambre"
+        data-bathrooms="1 salle de bains"
+        data-img="https://media.apimo.pro/cache/42121821f2a578ce210249a460740eae_124334a226_1920-original.jpg"
+        data-photos='["https://media.apimo.pro/cache/42121821f2a578ce210249a460740eae_124334a226_1920-original.jpg"]'
+        data-desc="Appartement T3 traversant avec vue exceptionnelle sur le Port Saint Sauveur. Très lumineux, en étage avec ascenseur. Séjour avec cuisine équipée ouvrant sur terrasse exposée ouest, vue Canal du Midi. Deux chambres exposées Est (une avec balcon). Parquet, double vitrage, chaudière gaz. Parking sous-sol et cellier inclus."
+        data-features='{"DPE":"C","Chauffage":"Gaz individuel","Étage":"Étage élevé","Parking":"Parking sous-sol","Ascenseur":"Oui","Charges":"135 €/mois","Taxe foncière":"1 100 €/an"}'
+        data-proximities="">
         <div class="property-card-img">
           <img src="https://media.apimo.pro/cache/42121821f2a578ce210249a460740eae_124334a226_1920-original.jpg" alt="Appartement Toulouse Port Saint Sauveur" loading="lazy">
           <span class="property-card-price">273 000 €</span>
@@ -150,7 +209,20 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Maison T5 — Port Sud" data-city="Ramonville-Saint-Agne" data-price="429 500 €" data-surface="115.5 m²" data-rooms="5 pièces" data-bedrooms="4 chambres" data-bathrooms="2 salles de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/418e9e113a58aa090354e740ecbcb708.jpg" data-desc="Superbe maison de 115 m² dans le quartier Port Sud de Ramonville. 4 chambres, 2 salles de bains, jardin privatif. Proche métro et commodités. Exclusivité IMMO-AM." data-badge="Exclusivité">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Maison T5 — Port Sud"
+        data-city="Ramonville-Saint-Agne"
+        data-price="429 500 €"
+        data-surface="115.5 m²"
+        data-rooms="5 pièces"
+        data-bedrooms="4 chambres"
+        data-bathrooms="2 salles de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/418e9e113a58aa090354e740ecbcb708.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/8d6d071bd0ac8a5e720f21a45f4233f9.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/6ae5fb4dc8bfae0d20229228024b3d3f.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/1dfe135b7cdcf51eacccd4b56db5040f.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/d6b01bd732eed1b1e3b70e3f1e66573e.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e2b103a6b990ce407176028ee7ed29a8.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/2e225e2a72f255efe1f74b8475c88255.jpg"]'
+        data-desc="Maison T6 de 115 m² dans le quartier Port Sud de Ramonville. RDC : séjour 23m² avec cheminée, cuisine équipée semi-ouverte 8m², chambre 11m², salle de douche, bureau 10m², buanderie. Étage : 3 chambres (13, 9, 14m²), mezzanine 6m², salle de bains 4m². Jardin intime, abri vélo et rangement 13m². Exclusivité IMMO-AM."
+        data-features='{"DPE":"C","Chauffage":"Climatisation + cheminée","Exposition":"Est/Ouest","Vitrage":"Double vitrage","Volets":"Volets roulants électriques","Interphone":"Oui","Taxe foncière":"2 360 €/an","Consommation":"1 580 - 2 200 €/an"}'
+        data-proximities="Centre-ville 200m, École 200m, Métro 2km, Supermarché 300m"
+        data-badge="Exclusivité">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/418e9e113a58aa090354e740ecbcb708.jpg" alt="Maison Ramonville Port Sud" loading="lazy">
           <span class="property-card-badge">Exclusivité</span>
@@ -167,7 +239,19 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Maison T5 — Port Sud" data-city="Ramonville-Saint-Agne" data-price="375 000 €" data-surface="103 m² + terrain 322 m²" data-rooms="5 pièces" data-bedrooms="4 chambres" data-bathrooms="1 salle de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/c2b83b2b3a351f06d3021830ad767db7.jpg" data-desc="Maison de caractère de 103 m² sur un terrain de 322 m² dans le quartier Port Sud. 4 chambres, idéale pour une famille. Cadre verdoyant et calme à Ramonville.">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Maison T5 — Port Sud"
+        data-city="Ramonville-Saint-Agne"
+        data-price="375 000 €"
+        data-surface="103 m² + terrain 322 m²"
+        data-rooms="5 pièces"
+        data-bedrooms="4 chambres"
+        data-bathrooms="1 salle de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/c2b83b2b3a351f06d3021830ad767db7.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/c2b83b2b3a351f06d3021830ad767db7.jpg"]'
+        data-desc="Maison de caractère de 103 m² sur terrain de 322 m² dans le quartier Port Sud. 4 chambres spacieuses, idéale pour famille. Cadre verdoyant et calme à Ramonville-Saint-Agne, proche commodités."
+        data-features='{"DPE":"D","Chambres":"4 chambres","Terrain":"322 m²"}'
+        data-proximities="">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/c2b83b2b3a351f06d3021830ad767db7.jpg" alt="Maison Ramonville Port Sud" loading="lazy">
           <span class="property-card-price">375 000 €</span>
@@ -182,7 +266,19 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Maison T5 — Pouvourville" data-city="Ramonville-Saint-Agne" data-price="434 000 €" data-surface="132 m² + terrain 821 m²" data-rooms="5 pièces" data-bedrooms="4 chambres" data-bathrooms="2 salles de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/f4e0d0729a7b152dbccec7be92d39800.jpg" data-desc="Grande maison familiale de 132 m² sur un vaste terrain de 821 m² dans le secteur Pouvourville. 4 chambres, 2 salles de bains, garage. Vue dégagée et environnement calme.">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Maison T5 — Pouvourville"
+        data-city="Ramonville-Saint-Agne"
+        data-price="434 000 €"
+        data-surface="132 m² + terrain 821 m²"
+        data-rooms="5 pièces"
+        data-bedrooms="4 chambres"
+        data-bathrooms="2 salles de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/f4e0d0729a7b152dbccec7be92d39800.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/f4e0d0729a7b152dbccec7be92d39800.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e6ebfd11810a442344455bf3924132b1.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/754efe6691bf9bec7d0d630e839fc2b8.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/ee39d8f69952d4e7e3309d09832a2de9.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/c0eeff4e3b95b55db34f02075e6d48e7.jpg","https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/0153197e6f7a058f61377ddcc117b5b9.jpg"]'
+        data-desc="Maison contemporaine 2006, plain-pied, 132 m² sur terrain 821 m² en secteur résidentiel calme. Entrée, bureau, séjour traversant ouvert cuisine équipée, 4 chambres dont suite parentale, salle de bains double vasque, buanderie, garage 13m². Terrasse couverte sous pergola, piscine au sel 6x3m, terrain clos arboré."
+        data-features='{"DPE":"C","Chauffage":"Électrique","Exposition":"Est/Ouest","Vue":"Vue dégagée campagne","Piscine":"Piscine au sel 6x3m","Garage":"Garage 13 m²","Vitrage":"Double vitrage","Volets":"Volets roulants","Taxe foncière":"2 579 €/an"}'
+        data-proximities="">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/f4e0d0729a7b152dbccec7be92d39800.jpg" alt="Maison Pouvourville" loading="lazy">
           <span class="property-card-price">434 000 €</span>
@@ -198,7 +294,19 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Appartement T3 — Rangueil" data-city="Toulouse" data-price="174 000 €" data-surface="56.21 m²" data-rooms="3 pièces" data-bedrooms="2 chambres" data-bathrooms="1 salle de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/953e8d7e45d6398cd955e80238b4b20f.jpg" data-desc="Appartement T3 de 56 m² dans le quartier universitaire de Rangueil. 2 chambres, idéal premier achat ou investissement locatif. Proximité métro, fac et commodités.">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Appartement T3 — Rangueil"
+        data-city="Toulouse"
+        data-price="174 000 €"
+        data-surface="56.21 m²"
+        data-rooms="3 pièces"
+        data-bedrooms="2 chambres"
+        data-bathrooms="1 salle de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/953e8d7e45d6398cd955e80238b4b20f.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/953e8d7e45d6398cd955e80238b4b20f.jpg"]'
+        data-desc="Appartement T3 de 56 m² dans le quartier universitaire de Rangueil. 2 chambres, idéal premier achat ou investissement locatif. Proximité métro, fac et commodités."
+        data-features='{"DPE":"E"}'
+        data-proximities="">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/953e8d7e45d6398cd955e80238b4b20f.jpg" alt="Appartement Toulouse Rangueil" loading="lazy">
           <span class="property-card-price">174 000 €</span>
@@ -213,7 +321,19 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Appartement — Métro Patte d'Oie" data-city="Toulouse" data-price="131 000 €" data-surface="30.09 m²" data-rooms="1 pièce" data-bedrooms="" data-bathrooms="" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e68e863fd39a6c7ff5b8326abf98d271.jpg" data-desc="Studio de 30 m² idéalement situé à proximité du métro Patte d'Oie. Parfait pour un investissement locatif ou un premier achat. Quartier dynamique avec tous les commerces.">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Appartement — Métro Patte d'Oie"
+        data-city="Toulouse"
+        data-price="131 000 €"
+        data-surface="30.09 m²"
+        data-rooms="1 pièce"
+        data-bedrooms=""
+        data-bathrooms=""
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e68e863fd39a6c7ff5b8326abf98d271.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e68e863fd39a6c7ff5b8326abf98d271.jpg"]'
+        data-desc="Studio de 30 m² idéalement situé à proximité du métro Patte d'Oie. Parfait pour un investissement locatif ou un premier achat. Quartier dynamique avec tous les commerces."
+        data-features='{}'
+        data-proximities="">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/e68e863fd39a6c7ff5b8326abf98d271.jpg" alt="Appartement Toulouse Patte d'Oie" loading="lazy">
           <span class="property-card-price">131 000 €</span>
@@ -227,7 +347,20 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Local commercial" data-city="Ramonville-Saint-Agne" data-price="139 000 €" data-surface="88 m²" data-rooms="" data-bedrooms="" data-bathrooms="" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/41d7e9dd8bd192a4e9f2645fcf67be9c.jpg" data-desc="Local commercial de 88 m² situé à Ramonville-Saint-Agne. Emplacement stratégique, idéal pour activité commerciale ou profession libérale. Exclusivité IMMO-AM." data-badge="Exclusivité">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Local commercial"
+        data-city="Ramonville-Saint-Agne"
+        data-price="139 000 €"
+        data-surface="88 m²"
+        data-rooms=""
+        data-bedrooms=""
+        data-bathrooms=""
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/41d7e9dd8bd192a4e9f2645fcf67be9c.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/41d7e9dd8bd192a4e9f2645fcf67be9c.jpg"]'
+        data-desc="Local commercial de 88 m² situé à Ramonville-Saint-Agne. Emplacement stratégique, idéal pour activité commerciale ou profession libérale. Exclusivité IMMO-AM."
+        data-features='{}'
+        data-proximities=""
+        data-badge="Exclusivité">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/41d7e9dd8bd192a4e9f2645fcf67be9c.jpg" alt="Local commercial Ramonville" loading="lazy">
           <span class="property-card-badge">Exclusivité</span>
@@ -242,7 +375,20 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Appartement — Cépière Bagatelle" data-city="Toulouse" data-price="69 500 €" data-surface="48.61 m²" data-rooms="2 pièces" data-bedrooms="1 chambre" data-bathrooms="1 salle de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/97c4e883ae96371fcd6b7a19ccaf6b2c.jpg" data-desc="Appartement T2 de 48 m² dans le quartier Cépière Bagatelle. 1 chambre, prix très attractif. Idéal investisseur ou premier achat. Exclusivité IMMO-AM." data-badge="Exclusivité">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Appartement — Cépière Bagatelle"
+        data-city="Toulouse"
+        data-price="69 500 €"
+        data-surface="48.61 m²"
+        data-rooms="2 pièces"
+        data-bedrooms="1 chambre"
+        data-bathrooms="1 salle de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/97c4e883ae96371fcd6b7a19ccaf6b2c.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/97c4e883ae96371fcd6b7a19ccaf6b2c.jpg"]'
+        data-desc="Appartement T2 de 48 m² dans le quartier Cépière Bagatelle. 1 chambre, prix très attractif. Idéal investisseur ou premier achat. Exclusivité IMMO-AM."
+        data-features='{}'
+        data-proximities=""
+        data-badge="Exclusivité">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/97c4e883ae96371fcd6b7a19ccaf6b2c.jpg" alt="Appartement Toulouse Bagatelle" loading="lazy">
           <span class="property-card-badge">Exclusivité</span>
@@ -258,7 +404,20 @@
         </div>
       </div>
 
-      <div class="property-card" onclick="openModal(this)" data-title="Studio — Jardin des Plantes" data-city="Toulouse" data-price="115 000 €" data-surface="18.23 m²" data-rooms="1 pièce" data-bedrooms="" data-bathrooms="1 salle de bains" data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/3c59ad74087e57f192ad95d72666e7ba.jpg" data-desc="Studio de charme de 18 m² dans le quartier historique du Jardin des Plantes. Emplacement premium, idéal investissement étudiant. Exclusivité IMMO-AM." data-badge="Exclusivité">
+      <div class="property-card" onclick="openModal(this)"
+        data-title="Studio — Jardin des Plantes"
+        data-city="Toulouse"
+        data-price="115 000 €"
+        data-surface="18.23 m²"
+        data-rooms="1 pièce"
+        data-bedrooms=""
+        data-bathrooms="1 salle de bains"
+        data-img="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/3c59ad74087e57f192ad95d72666e7ba.jpg"
+        data-photos='["https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/3c59ad74087e57f192ad95d72666e7ba.jpg"]'
+        data-desc="Studio de charme de 18 m² dans le quartier historique du Jardin des Plantes. Emplacement premium, idéal investissement étudiant. Exclusivité IMMO-AM."
+        data-features='{}'
+        data-proximities=""
+        data-badge="Exclusivité">
         <div class="property-card-img">
           <img src="https://d36vnx92dgl2c5.cloudfront.net/prod/Altera/4260/media/3c59ad74087e57f192ad95d72666e7ba.jpg" alt="Studio Toulouse Jardin des Plantes" loading="lazy">
           <span class="property-card-badge">Exclusivité</span>
@@ -279,16 +438,40 @@
   <!-- Modal détail -->
   <div class="modal-overlay" id="propertyModal">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-      <img class="modal-img" id="modalImg" src="" alt="">
+      <button class="modal-close" onclick="closeModal()">X</button>
+      <!-- Gallery -->
+      <div class="modal-gallery">
+        <img class="gallery-main" id="galleryMain" src="" alt="">
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+        <div class="gallery-nav">
+          <button class="gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
+          <button class="gallery-next" onclick="galleryNav(1)">&#8250;</button>
+        </div>
+        <span class="gallery-counter" id="galleryCounter"></span>
+      </div>
       <div class="modal-body">
-        <h2 id="modalTitle"></h2>
-        <div class="modal-location" id="modalCity"></div>
-        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-header-row">
+          <div>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-location" id="modalCity"></div>
+          </div>
+          <div class="modal-price" id="modalPrice"></div>
+        </div>
+        <!-- Specs bar -->
         <div class="modal-specs" id="modalSpecs"></div>
-        <p class="modal-desc" id="modalDesc"></p>
+        <!-- Tabs -->
+        <div class="modal-tabs">
+          <button class="tab active" data-tab="desc" onclick="switchTab('desc')">Description</button>
+          <button class="tab" data-tab="features" onclick="switchTab('features')">Caractéristiques</button>
+        </div>
+        <div class="tab-content active" id="tabDesc">
+          <p id="modalDesc"></p>
+          <div id="modalProximities"></div>
+        </div>
+        <div class="tab-content" id="tabFeatures">
+          <div class="features-grid" id="modalFeatures"></div>
+        </div>
+        <!-- CTA -->
         <div class="modal-cta">
           <a href="tel:+33664215235" class="btn-green">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -312,30 +495,146 @@
   </footer>
 
   <script>
+    let currentPhotos = [];
+    let currentPhotoIndex = 0;
+
     function openModal(card) {
       const d = card.dataset;
-      document.getElementById('modalImg').src = d.img;
+
+      // Photos
+      try { currentPhotos = JSON.parse(d.photos); } catch(e) { currentPhotos = [d.img]; }
+      if (!currentPhotos || currentPhotos.length === 0) currentPhotos = [d.img];
+      currentPhotoIndex = 0;
+      updateGallery();
+
+      // Title, city, price
       document.getElementById('modalTitle').textContent = d.title;
       document.getElementById('modalCity').textContent = d.city;
       document.getElementById('modalPrice').textContent = d.price;
+
+      // Description
       document.getElementById('modalDesc').textContent = d.desc;
+
+      // Specs bar
       let specs = '';
       if (d.surface) specs += `<div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> <strong>${d.surface}</strong></div>`;
       if (d.rooms) specs += `<div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> <strong>${d.rooms}</strong></div>`;
       if (d.bedrooms) specs += `<div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 012 2v10M2 17h20M6 8v9"/></svg> <strong>${d.bedrooms}</strong></div>`;
       if (d.bathrooms) specs += `<div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg> <strong>${d.bathrooms}</strong></div>`;
+
+      // DPE from features
+      let features = {};
+      try { features = JSON.parse(d.features || '{}'); } catch(e) { features = {}; }
+      if (features.DPE) {
+        const dpeLetter = features.DPE.toUpperCase();
+        specs += `<div class="spec"><strong>DPE</strong> <span class="dpe-badge dpe-${dpeLetter.toLowerCase()}">${dpeLetter}</span></div>`;
+      }
       document.getElementById('modalSpecs').innerHTML = specs;
+
+      // Features tab
+      let featuresHtml = '';
+      const featureIcons = {
+        'DPE': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+        'Chauffage': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 5-4 7-4 12a4 4 0 008 0c0-5-4-7-4-12z"/></svg>',
+        'Exposition': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+        'default': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>'
+      };
+      for (const [key, value] of Object.entries(features)) {
+        const icon = featureIcons[key] || featureIcons['default'];
+        if (key === 'DPE') {
+          const dpeLetter = value.toUpperCase();
+          featuresHtml += `<div class="feature-item">${icon} <span>${key} : <span class="dpe-badge dpe-${dpeLetter.toLowerCase()}">${dpeLetter}</span></span></div>`;
+        } else {
+          featuresHtml += `<div class="feature-item">${icon} <span>${key} : ${value}</span></div>`;
+        }
+      }
+      document.getElementById('modalFeatures').innerHTML = featuresHtml || '<p style="color:var(--gray-500);padding:8px;">Informations non disponibles.</p>';
+
+      // Proximities
+      const proxContainer = document.getElementById('modalProximities');
+      if (d.proximities && d.proximities.trim()) {
+        const proxItems = d.proximities.split(',').map(p => p.trim()).filter(p => p);
+        let proxHtml = '<h3 style="font-size:1rem;margin:20px 0 10px;color:var(--primary);">Proximités</h3><div class="proximities-list">';
+        proxItems.forEach(item => {
+          proxHtml += `<span class="proximity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ${item}</span>`;
+        });
+        proxHtml += '</div>';
+        proxContainer.innerHTML = proxHtml;
+      } else {
+        proxContainer.innerHTML = '';
+      }
+
+      // Reset tabs
+      switchTab('desc');
+
+      // Show modal
       document.getElementById('propertyModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
+    function updateGallery() {
+      const mainImg = document.getElementById('galleryMain');
+      const thumbsContainer = document.getElementById('galleryThumbs');
+      const counter = document.getElementById('galleryCounter');
+      const navButtons = document.querySelector('.gallery-nav');
+
+      mainImg.src = currentPhotos[currentPhotoIndex];
+      counter.textContent = currentPhotos.length > 1 ? `${currentPhotoIndex + 1} / ${currentPhotos.length}` : '';
+
+      // Show/hide nav and thumbs based on photo count
+      if (currentPhotos.length <= 1) {
+        navButtons.style.display = 'none';
+        thumbsContainer.style.display = 'none';
+      } else {
+        navButtons.style.display = 'flex';
+        thumbsContainer.style.display = 'flex';
+      }
+
+      // Build thumbnails
+      let thumbsHtml = '';
+      currentPhotos.forEach((photo, i) => {
+        thumbsHtml += `<img src="${photo}" alt="Photo ${i+1}" class="${i === currentPhotoIndex ? 'active' : ''}" onclick="goToPhoto(${i})">`;
+      });
+      thumbsContainer.innerHTML = thumbsHtml;
+    }
+
+    function galleryNav(direction) {
+      currentPhotoIndex += direction;
+      if (currentPhotoIndex < 0) currentPhotoIndex = currentPhotos.length - 1;
+      if (currentPhotoIndex >= currentPhotos.length) currentPhotoIndex = 0;
+      updateGallery();
+    }
+
+    function goToPhoto(index) {
+      currentPhotoIndex = index;
+      updateGallery();
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.modal-tabs .tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabName === 'desc' ? 'tabDesc' : 'tabFeatures').classList.add('active');
+    }
+
     function closeModal() {
       document.getElementById('propertyModal').classList.remove('active');
       document.body.style.overflow = '';
     }
+
     document.getElementById('propertyModal').addEventListener('click', (e) => {
       if (e.target === document.getElementById('propertyModal')) closeModal();
     });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+      if (document.getElementById('propertyModal').classList.contains('active')) {
+        if (e.key === 'ArrowLeft') galleryNav(-1);
+        if (e.key === 'ArrowRight') galleryNav(1);
+      }
+    });
   </script>
 </body>
 </html>
