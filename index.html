@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMMO-AM — Votre partenaire immobilier à Toulouse | Vente & Location</title>
+  <meta name="description" content="IMMO-AM, agence immobilière à Ramonville-Saint-Agne. 20 ans d'expérience sur Toulouse. Vente, location, estimation gratuite. Accompagnement personnalisé.">
+  <meta property="og:title" content="IMMO-AM — Agence Immobilière Toulouse">
+  <meta property="og:description" content="Votre partenaire de confiance pour vos projets immobiliers sur Toulouse et sa région.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a2e'/><text x='16' y='22' text-anchor='middle' fill='%23c9a96e' font-size='14' font-weight='bold'>IA</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    /* ══════════════════════════════════════
+       CSS VARIABLES
+       ══════════════════════════════════════ */
+    :root {
+      --primary: #1a1a2e;
+      --primary-light: #2d2d44;
+      --gold: #c9a96e;
+      --gold-light: #d4b87a;
+      --gold-dark: #b8944f;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece4;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+      --shadow-gold: 0 4px 20px rgba(201,169,110,0.25);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    /* ══════════════════════════════════════
+       RESET & BASE
+       ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-700);
+      background: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.2; color: var(--primary); }
+
+    /* ══════════════════════════════════════
+       ANIMATIONS
+       ══════════════════════════════════════ */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ══════════════════════════════════════
+       HEADER
+       ══════════════════════════════════════ */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0;
+      transition: all 0.4s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-md);
+      padding: 12px 0;
+    }
+    .header .container {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo {
+      font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;
+      color: var(--white); letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    .header.scrolled .logo { color: var(--primary); }
+    .logo span { color: var(--gold); }
+    .nav { display: flex; align-items: center; gap: 32px; }
+    .nav a {
+      font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.8);
+      transition: color 0.3s; position: relative;
+    }
+    .nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width 0.3s;
+    }
+    .nav a:hover::after { width: 100%; }
+    .header.scrolled .nav a { color: var(--gray-600); }
+    .header.scrolled .nav a:hover { color: var(--primary); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 24px; background: var(--gold); color: var(--primary);
+      font-weight: 600; font-size: 0.9rem; border-radius: 50px;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: all 0.3s; border-radius: 2px;
+    }
+    .header.scrolled .hamburger span { background: var(--primary); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ══════════════════════════════════════
+       HERO
+       ══════════════════════════════════════ */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 50%, var(--primary-light) 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80') center/cover no-repeat;
+      opacity: 0.15;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to top, var(--primary), transparent);
+    }
+    .hero .container {
+      position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 140px 24px 100px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 50px; color: var(--gold); font-size: 0.85rem; font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .hero-badge svg { width: 16px; height: 16px; }
+    .hero h1 {
+      font-size: 3.5rem; font-weight: 800; color: var(--white); line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-text { font-size: 1.15rem; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.8; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; background: var(--gold); color: var(--primary);
+      font-weight: 700; font-size: 1rem; border-radius: 50px;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; background: transparent; color: var(--white);
+      font-weight: 600; font-size: 1rem; border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.3); transition: all 0.3s; cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--gold); }
+    .hero-stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .hero-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg);
+      padding: 24px; width: 100%; max-width: 400px;
+    }
+    .hero-card-img {
+      width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+    .hero-card-badge {
+      display: inline-block; padding: 4px 12px; background: var(--gold);
+      color: var(--primary); font-size: 0.75rem; font-weight: 700;
+      border-radius: 50px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .hero-card h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 4px; }
+    .hero-card p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .hero-card-price { color: var(--gold); font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-top: 8px; }
+    .hero-card-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--white); border-radius: var(--radius); padding: 16px 20px;
+      box-shadow: var(--shadow-lg); animation: float 3s ease-in-out infinite;
+    }
+    .hero-card-float-number { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .hero-card-float-label { font-size: 0.75rem; color: var(--gray-500); }
+
+    /* ══════════════════════════════════════
+       TRUST BAR
+       ══════════════════════════════════════ */
+    .trust-bar {
+      background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 24px 0;
+      position: relative; z-index: 3;
+    }
+    .trust-bar .container {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 10px; }
+    .trust-item svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
+    .trust-item span { font-size: 0.9rem; font-weight: 500; color: var(--gray-600); }
+
+    /* ══════════════════════════════════════
+       SECTIONS COMMON
+       ══════════════════════════════════════ */
+    .section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: rgba(201,169,110,0.1); color: var(--gold-dark);
+      font-size: 0.85rem; font-weight: 600; border-radius: 50px;
+      margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    .section-subtitle { font-size: 1.1rem; color: var(--gray-500); max-width: 600px; line-height: 1.8; }
+    .section-header { margin-bottom: 60px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-subtitle { margin: 0 auto; }
+    .gold-line { width: 60px; height: 3px; background: var(--gold); border-radius: 2px; margin: 16px 0; }
+    .center .gold-line { margin: 16px auto; }
+
+    /* ══════════════════════════════════════
+       SERVICES
+       ══════════════════════════════════════ */
+    .services { background: var(--cream); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 36px;
+      border: 1px solid var(--gray-200); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px; background: rgba(201,169,110,0.1);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { width: 28px; height: 28px; color: var(--gold); }
+    .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .service-card p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* ══════════════════════════════════════
+       ABOUT / PROCESS
+       ══════════════════════════════════════ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-image {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-image img { width: 100%; height: 500px; object-fit: cover; }
+    .about-image-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: var(--gold); color: var(--primary); padding: 12px 20px;
+      border-radius: var(--radius); font-weight: 700; font-size: 0.9rem;
+    }
+    .about-content .section-title { font-size: 2.2rem; }
+    .about-text { font-size: 1.05rem; color: var(--gray-600); margin-bottom: 24px; }
+    .about-list { list-style: none; margin-bottom: 32px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; font-size: 0.95rem; color: var(--gray-600);
+    }
+    .about-list li svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+    /* ══════════════════════════════════════
+       STATS
+       ══════════════════════════════════════ */
+    .stats {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+      padding: 80px 0;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-item {}
+    .stat-number { font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: var(--gold); }
+    .stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+    /* ══════════════════════════════════════
+       PROCESS / TIMELINE
+       ══════════════════════════════════════ */
+    .process { background: var(--white); }
+    .timeline { max-width: 700px; margin: 0 auto; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 28px;
+      width: 2px; background: var(--gray-200);
+    }
+    .timeline-item {
+      display: flex; gap: 24px; padding-bottom: 40px; position: relative;
+    }
+    .timeline-dot {
+      width: 56px; height: 56px; background: var(--cream); border: 2px solid var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; color: var(--gold);
+      font-size: 1.2rem; flex-shrink: 0; z-index: 1;
+      transition: all 0.3s;
+    }
+    .timeline-item:hover .timeline-dot { background: var(--gold); color: var(--white); }
+    .timeline-content { padding-top: 12px; }
+    .timeline-content h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .timeline-content p { font-size: 0.95rem; color: var(--gray-500); }
+
+    /* ══════════════════════════════════════
+       TESTIMONIALS
+       ══════════════════════════════════════ */
+    .testimonials { background: var(--cream); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 32px;
+      border: 1px solid var(--gray-200); position: relative;
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .testimonial-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .testimonial-stars svg { width: 18px; height: 18px; fill: #FBBF24; }
+    .testimonial-text { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: var(--white); font-size: 1rem;
+    }
+    .testimonial-name { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
+    .testimonial-location { font-size: 0.8rem; color: var(--gray-400); }
+    .testimonial-quote {
+      position: absolute; top: 20px; right: 24px; font-family: var(--font-display);
+      font-size: 4rem; color: var(--gold); opacity: 0.15; line-height: 1;
+    }
+
+    /* ══════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════ */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 750px; margin: 0 auto; }
+    .faq-item {
+      border: 1px solid var(--gray-200); border-radius: var(--radius);
+      margin-bottom: 12px; overflow: hidden; transition: all 0.3s;
+    }
+    .faq-item.active { border-color: var(--gold); box-shadow: 0 2px 12px rgba(201,169,110,0.15); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; cursor: pointer; font-weight: 600; color: var(--primary);
+      font-size: 1rem; background: none; border: none; width: 100%; text-align: left;
+      font-family: var(--font-body);
+    }
+    .faq-question svg {
+      width: 20px; height: 20px; color: var(--gold); flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question svg { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px; font-size: 0.95rem; color: var(--gray-500); line-height: 1.8;
+    }
+
+    /* ══════════════════════════════════════
+       CTA BANNER
+       ══════════════════════════════════════ */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-banner h2 { font-size: 2.5rem; color: var(--white); margin-bottom: 16px; position: relative; z-index: 1; }
+    .cta-banner p { font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 32px; position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════
+       CONTACT
+       ══════════════════════════════════════ */
+    .contact { background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .contact-info h3 { font-size: 1.3rem; margin-bottom: 24px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
+    }
+    .contact-item-icon {
+      width: 48px; height: 48px; background: rgba(201,169,110,0.1);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .contact-item-label { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 2px; }
+    .contact-item-value { font-weight: 600; color: var(--primary); }
+    .contact-item-value a { color: var(--primary); transition: color 0.3s; }
+    .contact-item-value a:hover { color: var(--gold); }
+    .contact-form {
+      background: var(--white); border-radius: var(--radius-lg); padding: 36px;
+      border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--gray-700); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 14px 16px; border: 1px solid var(--gray-300);
+      border-radius: var(--radius); font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color 0.3s, box-shadow 0.3s; outline: none; color: var(--gray-700);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════ */
+    .footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 60px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand .logo { font-size: 1.4rem; margin-bottom: 12px; display: inline-block; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+    .footer h4 { color: var(--white); font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 10px; }
+    .footer ul a { font-size: 0.9rem; transition: color 0.3s; }
+    .footer ul a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 0.85rem;
+    }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-socials a {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+    }
+    .footer-socials a:hover { background: var(--gold); color: var(--primary); }
+    .footer-socials svg { width: 18px; height: 18px; }
+
+    /* ══════════════════════════════════════
+       MOBILE NAV OVERLAY
+       ══════════════════════════════════════ */
+    .mobile-nav {
+      position: fixed; inset: 0; background: var(--primary); z-index: 99;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .mobile-nav.active { opacity: 1; pointer-events: all; }
+    .mobile-nav a {
+      font-family: var(--font-display); font-size: 1.5rem; color: var(--white);
+      font-weight: 600; transition: color 0.3s;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════ */
+    @media (max-width: 968px) {
+      .nav { display: none; }
+      .hamburger { display: flex; }
+      .hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-visual { display: none; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .hero-ctas { justify-content: center; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image { order: -1; }
+      .about-image img { height: 300px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .section-title { font-size: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .hero-stats { grid-template-columns: 1fr; gap: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 60px 0; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="logo">IMMO<span>-AM</span></a>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#about">À propos</a>
+        <a href="#realisations">Biens</a>
+        <a href="#temoignages">Avis</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:+33664215235" class="nav-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          06 64 21 52 35
+        </a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#realisations">Nos biens</a>
+    <a href="#temoignages">Avis</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+33664215235" class="btn-primary" style="margin-top:16px;">06 64 21 52 35</a>
+  </div>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <div class="hero-badge reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Adhérent SNPI — 20 ans d'expérience
+        </div>
+        <h1 class="reveal delay-1">Votre projet immobilier entre de <em>bonnes mains</em></h1>
+        <p class="hero-text reveal delay-2">
+          IMMO-AM vous accompagne dans tous vos projets immobiliers sur Toulouse et sa région.
+          Vente, location, estimation — une approche humaine et une expertise locale reconnue depuis 20 ans.
+        </p>
+        <div class="hero-ctas reveal delay-3">
+          <a href="#contact" class="btn-primary">
+            Estimation gratuite
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#services" class="btn-secondary">Nos services</a>
+        </div>
+        <div class="hero-stats reveal delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="20">0</div>
+            <div class="hero-stat-label">Années d'expérience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="500">0</div>
+            <div class="hero-stat-label">Biens vendus</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="98" data-suffix="%">0</div>
+            <div class="hero-stat-label">Clients satisfaits</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal-right delay-2">
+        <div class="hero-card">
+          <img class="hero-card-img" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Villa Toulouse" loading="lazy">
+          <span class="hero-card-badge">Exclusivité</span>
+          <h3>Villa T5 — Ramonville</h3>
+          <p>180 m² · 5 pièces · Jardin 400 m²</p>
+          <div class="hero-card-price">429 500 €</div>
+        </div>
+        <div class="hero-card-float">
+          <div class="hero-card-float-number">4.9/5</div>
+          <div class="hero-card-float-label">Avis clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TRUST BAR ══════════ -->
+  <div class="trust-bar reveal">
+    <div class="container">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>Adhérent SNPI</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Estimation sous 48h</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Expertise locale Toulouse</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Accompagnement personnalisé</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SERVICES ══════════ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="section-label">Nos services</span>
+        <h2 class="section-title">Un accompagnement complet<br>pour chaque projet</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">De l'estimation à la signature, IMMO-AM est à vos côtés à chaque étape de votre projet immobilier.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Vente immobilière</h3>
+          <p>Mise en valeur de votre bien, estimation précise, stratégie de commercialisation sur-mesure et accompagnement jusqu'à la signature.</p>
+        </div>
+        <div class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h3>Location</h3>
+          <p>Recherche de locataires fiables, gestion des dossiers, rédaction du bail et états des lieux. Votre tranquillité d'esprit assurée.</p>
+        </div>
+        <div class="service-card reveal delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3>Estimation gratuite</h3>
+          <p>Estimation précise et gratuite de votre bien basée sur notre connaissance approfondie du marché toulousain et des données récentes.</p>
+        </div>
+        <div class="service-card reveal delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>Recherche de biens</h3>
+          <p>Un projet d'achat ? Nous sélectionnons les biens correspondant à vos critères et organisons les visites selon votre planning.</p>
+        </div>
+        <div class="service-card reveal delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Conseil juridique</h3>
+          <p>Expertise sur les aspects juridiques et administratifs de votre transaction. Nous vous guidons dans toutes les démarches réglementaires.</p>
+        </div>
+        <div class="service-card reveal delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Syndic & copropriété</h3>
+          <p>Gestion de copropriété, suivi des assemblées générales, entretien des parties communes. Un syndic réactif et à l'écoute.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ À PROPOS ══════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal-left">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Agence IMMO-AM Toulouse" loading="lazy">
+          <div class="about-image-badge">Depuis 20 ans à Toulouse</div>
+        </div>
+        <div class="about-content reveal-right">
+          <span class="section-label">À propos</span>
+          <h2 class="section-title">Une approche humaine de l'immobilier</h2>
+          <div class="gold-line"></div>
+          <p class="about-text">
+            Fondée par Maïté Aujoulat, IMMO-AM est née d'une passion pour l'immobilier et d'une conviction : chaque projet mérite un accompagnement personnalisé. Forte de 20 ans d'expérience sur le marché toulousain, notre agence allie expertise locale et approche humaine.
+          </p>
+          <p class="about-text">
+            Basée à Ramonville-Saint-Agne, nous intervenons sur toute la métropole toulousaine. Notre connaissance fine du tissu local nous permet de vous conseiller avec précision, que vous vendiez, achetiez ou louiez.
+          </p>
+          <ul class="about-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Estimation gratuite sous 48h, sans engagement
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Visuels professionnels et annonces optimisées
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Accompagnement de A à Z jusqu'à la signature
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Adhérent SNPI — garantie financière et assurance
+            </li>
+          </ul>
+          <a href="#contact" class="btn-primary">Parlons de votre projet
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS ══════════ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-count="20">0</div>
+          <div class="stat-label">Années d'expérience</div>
+        </div>
+        <div class="stat-item reveal delay-1">
+          <div class="stat-number" data-count="500" data-suffix="+">0</div>
+          <div class="stat-label">Transactions réalisées</div>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <div class="stat-number" data-count="98" data-suffix="%">0</div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <div class="stat-number" data-count="45" data-suffix="j">0</div>
+          <div class="stat-label">Délai moyen de vente</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PROCESSUS ══════════ -->
+  <section class="section process" id="processus">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="section-label">Notre méthode</span>
+        <h2 class="section-title">Comment ça marche ?</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">Un processus simple et transparent pour mener votre projet à bien.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-content">
+            <h3>Estimation précise</h3>
+            <p>Analyse approfondie de votre bien, comparatifs du marché et estimation réaliste pour une vente au meilleur prix, sous 48h.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal delay-1">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-content">
+            <h3>Mise en valeur & commercialisation</h3>
+            <p>Photos professionnelles, visite virtuelle, rédaction d'annonces attractives et diffusion sur les meilleurs portails immobiliers.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal delay-2">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-content">
+            <h3>Visites & négociation</h3>
+            <p>Organisation des visites, sélection des acquéreurs sérieux, négociation optimale pour défendre vos intérêts.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal delay-3">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-content">
+            <h3>Accompagnement jusqu'à la signature</h3>
+            <p>Suivi administratif complet, coordination avec le notaire, et présence à vos côtés le jour de la signature de l'acte authentique.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TÉMOIGNAGES ══════════ -->
+  <section class="section testimonials" id="temoignages">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="section-label">Témoignages</span>
+        <h2 class="section-title">Ce que disent nos clients</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal delay-1">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Maïté a vendu notre appartement en seulement 3 semaines. Son estimation était juste, sa réactivité impressionnante et ses conseils toujours pertinents. On recommande les yeux fermés !</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SL</div>
+            <div>
+              <div class="testimonial-name">Sophie Lacroix</div>
+              <div class="testimonial-location">Ramonville-Saint-Agne</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-2">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Nous cherchions un T3 sur Toulouse depuis des mois. IMMO-AM nous a trouvé la perle rare en 2 semaines, pile dans notre budget. Un accompagnement humain et efficace du début à la fin.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Marc & Raphaëlle</div>
+              <div class="testimonial-location">Toulouse — Saint-Cyprien</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-3">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">En tant qu'investisseur, j'ai besoin d'un interlocuteur fiable. Maïté connaît parfaitement le marché locatif toulousain. Trois investissements réussis grâce à ses recommandations.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PA</div>
+            <div>
+              <div class="testimonial-name">Philippe André</div>
+              <div class="testimonial-location">Castanet-Tolosan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions fréquentes</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Combien coûte une estimation ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">L'estimation est entièrement gratuite et sans engagement. Nous nous déplaçons chez vous pour évaluer votre bien et vous remettons un rapport détaillé sous 48h.</div></div>
+        </div>
+        <div class="faq-item reveal delay-1">
+          <button class="faq-question">
+            Quelle est votre zone d'intervention ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nous intervenons sur toute la métropole toulousaine : Toulouse, Ramonville-Saint-Agne, Castanet-Tolosan, Labège, Auzeville, Balma, et les communes environnantes.</div></div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <button class="faq-question">
+            Quel est le délai moyen pour vendre un bien ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">En moyenne, nous vendons un bien en 45 jours. Ce délai dépend du type de bien, de sa localisation et du prix. Notre stratégie de commercialisation optimisée permet de réduire significativement les délais.</div></div>
+        </div>
+        <div class="faq-item reveal delay-3">
+          <button class="faq-question">
+            Quels sont vos honoraires ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nos honoraires sont transparents et conformes au barème affiché en agence. Ils ne sont dus qu'en cas de vente effective. Contactez-nous pour un devis personnalisé selon votre projet.</div></div>
+        </div>
+        <div class="faq-item reveal delay-4">
+          <button class="faq-question">
+            Proposez-vous des visites virtuelles ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Oui, nous proposons des visites virtuelles 360° et des photos professionnelles pour chaque bien, permettant aux acquéreurs de se projeter avant même la visite physique.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA BANNER ══════════ -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="reveal">Prêt à concrétiser votre projet ?</h2>
+      <p class="reveal delay-1">Estimation gratuite, conseil personnalisé, accompagnement de A à Z.</p>
+      <div class="reveal delay-2" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+        <a href="#contact" class="btn-primary">Demander une estimation</a>
+        <a href="tel:+33664215235" class="btn-secondary">06 64 21 52 35</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CONTACT ══════════ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Parlons de votre projet</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">Nous vous répondons sous 24h.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h3>Nos coordonnées</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Adresse</div>
+              <div class="contact-item-value">33 Rue Jacques Prévert, Bât B<br>31520 Ramonville-Saint-Agne</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Téléphone</div>
+              <div class="contact-item-value"><a href="tel:+33664215235">06 64 21 52 35</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value"><a href="mailto:maite.aujoulat@immo-am.com">maite.aujoulat@immo-am.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Horaires</div>
+              <div class="contact-item-value">Lun - Ven : 9h - 19h<br>Sam : sur rendez-vous</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal-right">
+          <form onsubmit="event.preventDefault(); alert('Merci ! Nous vous recontactons sous 24h.'); this.reset();">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nom complet</label>
+                <input type="text" placeholder="Votre nom" required>
+              </div>
+              <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" placeholder="06 XX XX XX XX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Votre projet</label>
+              <select required>
+                <option value="">Sélectionnez...</option>
+                <option>Je souhaite vendre</option>
+                <option>Je souhaite acheter</option>
+                <option>Je souhaite louer</option>
+                <option>Je souhaite une estimation</option>
+                <option>Autre demande</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Décrivez votre projet immobilier..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+              Envoyer ma demande
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">IMMO<span>-AM</span></a>
+          <p>Votre partenaire de confiance pour tous vos projets immobiliers sur Toulouse et sa région. 20 ans d'expertise locale.</p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Vente immobilière</a></li>
+            <li><a href="#services">Location</a></li>
+            <li><a href="#services">Estimation gratuite</a></li>
+            <li><a href="#services">Conseil juridique</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>L'agence</h4>
+          <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#temoignages">Avis clients</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+33664215235">06 64 21 52 35</a></li>
+            <li><a href="mailto:maite.aujoulat@immo-am.com">maite.aujoulat@immo-am.com</a></li>
+            <li>33 Rue Jacques Prévert</li>
+            <li>31520 Ramonville</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IMMO-AM. Tous droits réservés. Adhérent SNPI.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════ JAVASCRIPT ══════════ -->
+  <script>
+    /* === HEADER SCROLL EFFECT === */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    /* === MOBILE MENU === */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* === SCROLL REVEAL ANIMATIONS === */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+      observer.observe(el);
+    });
+
+    /* === ANIMATED COUNTERS === */
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const duration = 2000;
+          const start = performance.now();
+
+          function animate(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = Math.round(target * eased);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+          }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    /* === FAQ ACCORDION === */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Open clicked (if wasn't open)
+        if (!isOpen) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    /* === SMOOTH SCROLL === */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
