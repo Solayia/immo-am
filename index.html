@@ -69,6 +69,12 @@
     @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
+    /* Accessibilité : désactive les animations si préférence utilisateur */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
+    }
+
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-left { opacity: 0; transform: translateX(-30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -155,8 +161,8 @@
       opacity: 0.35;
     }
     .hero::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
-      background: linear-gradient(to top, var(--primary), transparent);
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to top, rgba(42,92,84,0.6), transparent);
     }
     .hero .container {
       position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 140px 24px 100px;
@@ -164,8 +170,8 @@
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 16px; background: rgba(74,132,123,0.15); border: 1px solid rgba(74,132,123,0.3);
-      border-radius: 50px; color: var(--gold); font-size: 0.85rem; font-weight: 500;
+      padding: 8px 16px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px; color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 500;
       margin-bottom: 24px;
     }
     .hero-badge svg { width: 16px; height: 16px; }
@@ -173,8 +179,8 @@
       font-size: 3.5rem; font-weight: 800; color: var(--white); line-height: 1.1;
       margin-bottom: 20px;
     }
-    .hero h1 em { font-style: normal; color: var(--gold); }
-    .hero-text { font-size: 1.15rem; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.8; }
+    .hero h1 em { font-style: normal; color: #a8dbd3; }
+    .hero-text { font-size: 1.15rem; color: rgba(255,255,255,0.85); margin-bottom: 36px; line-height: 1.8; }
     .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
@@ -581,15 +587,15 @@
         </div>
         <div class="hero-stats reveal delay-4">
           <div class="hero-stat">
-            <div class="hero-stat-number" data-count="20">0</div>
+            <div class="hero-stat-number" data-count="20">20</div>
             <div class="hero-stat-label">Années d'expérience</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number" data-count="500">0</div>
+            <div class="hero-stat-number" data-count="500">500+</div>
             <div class="hero-stat-label">Biens vendus</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number" data-count="98" data-suffix="%">0</div>
+            <div class="hero-stat-number" data-count="98" data-suffix="%">98%</div>
             <div class="hero-stat-label">Clients satisfaits</div>
           </div>
         </div>
@@ -737,19 +743,19 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item reveal">
-          <div class="stat-number" data-count="20">0</div>
+          <div class="stat-number" data-count="20">20</div>
           <div class="stat-label">Années d'expérience</div>
         </div>
         <div class="stat-item reveal delay-1">
-          <div class="stat-number" data-count="500" data-suffix="+">0</div>
+          <div class="stat-number" data-count="500" data-suffix="+">500+</div>
           <div class="stat-label">Transactions réalisées</div>
         </div>
         <div class="stat-item reveal delay-2">
-          <div class="stat-number" data-count="98" data-suffix="%">0</div>
+          <div class="stat-number" data-count="98" data-suffix="%">98%</div>
           <div class="stat-label">Clients satisfaits</div>
         </div>
         <div class="stat-item reveal delay-3">
-          <div class="stat-number" data-count="45" data-suffix="j">0</div>
+          <div class="stat-number" data-count="45" data-suffix="j">45j</div>
           <div class="stat-label">Délai moyen de vente</div>
         </div>
       </div>
